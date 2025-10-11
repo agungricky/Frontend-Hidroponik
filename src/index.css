@@ -1,0 +1,20 @@
+.border-end {
+  box-shadow: 2px 0 0px 0 rgba(0,0,0,0.1);
+}
+
+.custom-border-md {
+  border: none;
+}
+
+@media (min-width: 768px) {
+  .custom-border-md {
+    border-right: 2px solid rgba(0, 0, 0, 0.15); 
+  }
+}
+
+@media (max-width: 576px) {
+  .mb-sm-5 {
+    margin-bottom: 3rem !important;
+  }
+}
+
