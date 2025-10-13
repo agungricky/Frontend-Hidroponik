@@ -6,10 +6,10 @@ import api from "../Restapi";
 
 const INTERVAL = 60000; // kirim data ke backend tiap 60 detik
 
-const RealtimePHChart = () => {
+const Linechart_tds = () => {
   const [series, setSeries] = useState([
     {
-      name: "PH",
+      name: "TDS",
       data: [], // nanti diisi dari database
     },
   ]);
@@ -38,12 +38,12 @@ const RealtimePHChart = () => {
         // ubah format data sesuai chart Apex (x = waktu, y = nilai PH)
         const formattedData = sensorData.map((item) => ({
           x: new Date(item.created_at),
-          y: parseFloat(item.ph),
+          y: parseFloat(item.tds),
         }));
 
         // simpan ke ref dan chart
         recordRef.current = formattedData;
-        setSeries([{ name: "PH", data: formattedData }]);
+        setSeries([{ name: "TDS", data: formattedData }]);
       })
       .catch((error) => {
         console.error("Error fetching initial data:", error);
@@ -94,11 +94,11 @@ const RealtimePHChart = () => {
             // tambahkan data baru ke recordRef
             const newData = [
               ...recordRef.current,
-              { x: new Date(), y: parseFloat(dataToSend.ph) },
+              { x: new Date(), y: parseFloat(dataToSend.tds) },
             ].slice(-15); // jaga tetap 15 data terakhir
 
             recordRef.current = newData;
-            setSeries([{ name: "PH", data: newData }]);
+            setSeries([{ name: "TDS", data: newData }]);
           })
           .catch((err) =>
             console.error("Error posting sensor:", err.response?.data || err)
@@ -141,10 +141,10 @@ const RealtimePHChart = () => {
     yaxis: {
       min: 0,
       max: 100,
-      title: { text: "Nilai PH" },
+      title: { text: "Nilai TDS" },
     },
     title: {
-      text: "Realtime PH Chart",
+      text: "Realtime TDS Chart",
       align: "left",
     },
   };
@@ -154,7 +154,7 @@ const RealtimePHChart = () => {
     <div className="col-12 col-md-6 col-lg-6">
       <div className="card" style={{ borderTop: "4px solid #E0D9D9" }}>
         <div className="card-block">
-          <h3 className="card-title">Realtime PH Chart</h3>
+          <h3 className="card-title">Realtime TDS Chart</h3>
           <h6 className="card-subtitle">
             Data dari database (15 terbaru) dan update otomatis tiap menit.
           </h6>
@@ -178,4 +178,4 @@ const RealtimePHChart = () => {
   );
 };
 
-export default RealtimePHChart;
+export default Linechart_tds;

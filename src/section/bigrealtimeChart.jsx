@@ -1,17 +1,64 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Chart from "react-apexcharts";
-export default function BigrealtimeChart() {
-    const POINTS = 15;
-    const INTERVAL = 1000; // data baru tiap 6 detik
-    const now = new Date();
+import { db } from "../Firebase";
+import { onValue, ref } from "firebase/database";
+import api from "../Restapi";
 
-    // 15 data awal
-    const initialData = Array.from({ length: POINTS }).map((_, i) => ({
-        x: new Date(now.getTime() - (POINTS - i) * INTERVAL),
-        y: Math.floor(Math.random() * 1000),
-    }));
+const Bigrealtimechart = () => {
+    const [series, setSeries] = useState([{ name: "SUHU", data: [] }]);
+    const recordRef = useRef([]);
+    const suhuRef = useRef(null);
+    const [suhu, setSuhu] = useState(null);
 
-    const [series, setSeries] = useState([{ name: "Sales", data: initialData }]);
+    // --- STEP 1: Ambil data awal dari database ---
+    useEffect(() => {
+        api
+            .get("/sensor")
+            .then((response) => {
+                console.log("Response /sensor:", response.data);
+
+                const sensorData = Array.isArray(response.data)
+                    ? response.data
+                    : Array.isArray(response.data.data)
+                    ? response.data.data
+                    : [];
+
+                const formattedData = sensorData.map((item) => ({
+                    x: new Date(item.created_at),
+                    y: parseFloat(item.suhu),
+                }));
+
+                recordRef.current = formattedData;
+                setSeries([{ name: "SUHU", data: formattedData }]);
+            })
+            .catch((error) => {
+                console.error("Error fetching initial data:", error);
+            });
+    }, []);
+
+    // --- STEP 2: Ambil data realtime dari Firebase ---
+    useEffect(() => {
+        const suhuDb = ref(db, "suhu");
+        const unsubSuhu = onValue(suhuDb, (snap) => {
+            const value = snap.val();
+            if (value !== null) setSuhu(value);
+        });
+
+        return () => unsubSuhu();
+    }, []);
+
+    // --- STEP 3: Setiap kali suhu berubah, update chart ---
+    useEffect(() => {
+        if (suhu !== null) {
+            const newData = [
+                ...recordRef.current,
+                { x: new Date(), y: parseFloat(suhu) },
+            ].slice(-15);
+
+            recordRef.current = newData;
+            setSeries([{ name: "SUHU", data: newData }]);
+        }
+    }, [suhu]);
 
     const options = {
         chart: {
@@ -20,61 +67,65 @@ export default function BigrealtimeChart() {
             animations: {
                 enabled: true,
                 easing: "linear",
-                dynamicAnimation: { speed: INTERVAL / 10 }, // gerakan smooth
+                dynamicAnimation: { speed: 500 },
             },
             zoom: { enabled: false },
         },
         stroke: { curve: "smooth" },
-        markers: {
-            size: 4, // ukuran marker untuk semua titik
-            colors: '#FF5733', // warna marker
-        },
+        markers: { size: 4, colors: "#FF5733" },
         xaxis: {
             type: "datetime",
-            tickAmount: 15,
             labels: {
                 datetimeUTC: false,
                 format: "HH:mm:ss",
                 rotate: -45,
             },
         },
-        yaxis: { max: 1000 },
-        title: { text: "Line Chart", align: "left" },
+        yaxis: {
+            min: 0,
+            max: 100,
+            title: { text: "Nilai Suhu" },
+        },
+        title: {
+            text: "Realtime Suhu Chart",
+            align: "left",
+        },
     };
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setSeries(prev => {
-                const lastTime = prev[0].data[prev[0].data.length - 1].x.getTime();
-                const newPoint = { x: new Date(lastTime + INTERVAL), y: Math.floor(Math.random() * 1000) };
-                const newData = [...prev[0].data.slice(1), newPoint]; // scroll dengan data baru
-                return [{ ...prev[0], data: newData }];
-            });
-        }, INTERVAL);
-
-        return () => clearInterval(interval);
-    }, []);
 
     return (
         <div className="col-lg-12 col-md-12">
-            <div className="card" style={{ borderTop: '4px solid #F0E4D3' }}>
+            <div className="card" style={{ borderTop: "4px solid #F0E4D3" }}>
                 <div className="card-block">
                     <div className="row">
                         <div className="col-12">
                             <div className="d-flex flex-wrap">
                                 <div>
-                                    <h3 className="card-title">Lorem ipsum dolor sit.</h3>
-                                    <h6 className="card-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus, eos?</h6>
+                                    <h3 className="card-title">Realtime Suhu</h3>
+                                    <h6 className="card-subtitle">
+                                        Menampilkan data suhu dari database dan update dari Firebase
+                                    </h6>
                                 </div>
                             </div>
                         </div>
 
                         <div className="col-12 d-flex flex-wrap mt-4">
-                            <Chart options={options} series={series} type="line" height={250} width={1000} />
+                            {series[0].data.length > 0 ? (
+                                <Chart
+                                    options={options}
+                                    series={series}
+                                    type="line"
+                                    height={300}
+                                    width={1000}
+                                />
+                            ) : (
+                                <p>Memuat data dari server...</p>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     );
-}
+};
+
+export default Bigrealtimechart;

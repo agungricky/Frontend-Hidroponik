@@ -1,14 +1,3 @@
-// import axios from "axios";
-
-// const firebase = axios.create({
-//   baseURL: "https://hidroponik-e2f70-default-rtdb.asia-southeast1.firebasedatabase.app/.json",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// });
-
-// export default firebase;
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";

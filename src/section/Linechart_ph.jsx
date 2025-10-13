@@ -6,7 +6,7 @@ import api from "../Restapi";
 
 const INTERVAL = 60000; // kirim data ke backend tiap 60 detik
 
-const RealtimePHChart = () => {
+const Linechart_ph = () => {
   const [series, setSeries] = useState([
     {
       name: "PH",
@@ -178,4 +178,4 @@ const RealtimePHChart = () => {
   );
 };
 
-export default RealtimePHChart;
+export default Linechart_ph;
