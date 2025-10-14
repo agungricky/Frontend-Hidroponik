@@ -133,32 +133,32 @@ const Bigrealtimechart = () => {
     yaxis: {
       min: 0,
       max: 100,
-      title: { text: "Nilai PH" },
+      title: { text: "Nilai Suhu" },
     },
     title: {
-      text: "Realtime PH Chart",
+      text: "Realtime Suhu Chart",
       align: "left",
     },
   };
 
   // --- STEP 6: Render chart ---
   return (
-    <div className="col-12">
-      <div className="card" style={{ borderTop: "4px solid #E0D9D9" }}>
+    <div className="col-12 col-md-6 col-lg-6">
+      <div className="card" style={{ borderTop: "4px solid #A7E399" }}>
         <div className="card-block">
-          <h3 className="card-title">Realtime PH Chart</h3>
+          <h3 className="card-title">SUHU Chart</h3>
           <h6 className="card-subtitle">
-            Data dari database (15 terbaru) dan update otomatis tiap menit.
+            Pergerakan nilai Ph dalam 15 menit terakhir.
           </h6>
 
-          <div className="mt-3">
+          <div className="mt-3 w-[150px] md:w-[450px]">
             {series[0].data.length > 0 ? (
               <Chart
                 options={options}
                 series={series}
                 type="line"
                 height={300}
-                width={1000}
+                width="100%"
               />
             ) : (
               <p>Belum ada data tunggu 1 menit...</p>

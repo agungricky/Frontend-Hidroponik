@@ -7,26 +7,28 @@ function SpedoMeter(props) {
                 <h4 className="text-center">
                     {props.title}
                 </h4>
-                <GaugeComponent
+                {/* <GaugeComponent
+                    minValue={0}
+                    maxValue={15}
                     arc={{
                         subArcs: [
                             {
-                                limit: 20,
+                                limit: props.limit[0],
                                 color: '#EA4228',
                                 showTick: true
                             },
                             {
-                                limit: 40,
+                                limit: props.limit[1],
                                 color: '#F58B19',
                                 showTick: true
                             },
                             {
-                                limit: 60,
+                                limit: props.limit[2],
                                 color: '#F5CD19',
                                 showTick: true
                             },
                             {
-                                limit: 100,
+                                limit: props.limit[3],
                                 color: '#5BE12C',
                                 showTick: true
                             },
@@ -39,7 +41,29 @@ function SpedoMeter(props) {
                             style: { fill: '#393E46', fontSize: '30px', fontFamily: 'Arial' }
                         }
                     }}
+                /> */}
+
+                <GaugeComponent
+                    minValue={props.min}
+                    maxValue={props.max}
+                    arc={{
+                        subArcs: props.limit
+                            .filter(limit => limit >= props.min && limit <= props.max) 
+                            .map((limit, index) => ({
+                                limit,
+                                color: ['#EA4228', '#F58B19', '#F5CD19', '#5BE12C', '#EA4228'][index],
+                                showTick: true,
+                            })),
+                    }}
+                    value={props.value}
+                    labels={{
+                        valueLabel: {
+                            formatTextValue: value => value + ' ' + props.satuan,
+                            style: { fill: '#393E46', fontSize: '30px', fontFamily: 'Arial' },
+                        },
+                    }}
                 />
+
             </div>
         </div>
     )

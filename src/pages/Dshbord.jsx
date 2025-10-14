@@ -4,6 +4,7 @@ import BigrealtimeChart from "../section/BigrealtimeChartt";
 import RiwayatLog from "../komponen/RiwayatLog";
 import Linechart_ph from "../section/Linechart_ph";
 import Linechart_tds from "../section/Linechart_tds";
+import Footer from "../komponen/Footer";
 
 function dashboard() {
 
@@ -14,15 +15,15 @@ function dashboard() {
                 <NilaiSensor />
                 <div className="row">
                     <Linechart_ph/>
-                    <Linechart_tds/>
+                    <BigrealtimeChart />
                 </div>
                 <div className="row">
-                    <BigrealtimeChart />
+                    <Linechart_tds/>
                 </div>
 
                 <RiwayatLog />
             </div>
-            <footer className="footer"> © 2025 Water Quality </footer>
+            <Footer />
         </div>
     )
 }

@@ -4,7 +4,7 @@ import api from "../Restapi";
 
 function Table() {
     const [fulldata, setFulldata] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [ , setLoading] = useState(true);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage, setPerPage] = useState(10);

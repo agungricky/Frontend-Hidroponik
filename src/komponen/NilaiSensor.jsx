@@ -41,15 +41,15 @@ function NilaiSensor() {
                     <div className="card-block">
                         <div className="d-flex flex-wrap mb-4">
                             <div>
-                                <h3 className="card-title">Lorem ipsum dolor sit amet.</h3>
-                                <h6 className="card-subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, eaque.</h6>
+                                <h3 className="card-title">Realtime Data Sensor.</h3>
+                                <h6 className="card-subtitle">Menampilkan data sensor secara langsung untuk memantau kondisi sistem hidroponik secara real-time.</h6>
                             </div>
                         </div>
 
                         <div className="d-flex flex-column flex-md-row">
-                            <SpedoMeter title={"Sensor Ph"} value={ph} satuan={"Ph"} border={true} />
-                            <SpedoMeter title={"Sensor TDS"} value={tds} satuan={"Ppm"} border={true} />
-                            <SpedoMeter title={"Sensor Suhu"} value={suhu} satuan={"°C"} border={false} />
+                            <SpedoMeter title={"Sensor Ph"} value={ph} satuan={"Ph"} border={true} limit={[0, 4, 9, 14]} min={0} max={14} />
+                            <SpedoMeter title={"Sensor TDS"} value={tds} satuan={"Ppm"} border={true} limit={[0, 500, 1000, 1500, 2000]} min={0} max={2000} />
+                            <SpedoMeter title={"Sensor Suhu"} value={suhu} satuan={"°C"} border={false} limit={[0, 40, 80, 100]} min={0} max={100} />
                         </div>
                     </div>
                 </div>

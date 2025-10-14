@@ -2836,6 +2836,11 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
+sweetalert2@^11.26.2:
+  version "11.26.2"
+  resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.26.2.tgz"
+  integrity sha512-tR5oADjrN6gv+0Y/tpfMXM/rSlx/QHmRhygBHhWh29iw1AO/x7D8OhghyogaY+NLZrd4qfhssVafRBHi+DREzQ==
+
 tinyglobby@^0.2.15:
   version "0.2.15"
   resolved "https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.15.tgz"

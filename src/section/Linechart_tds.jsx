@@ -132,7 +132,7 @@ const Linechart_tds = () => {
     },
     yaxis: {
       min: 0,
-      max: 100,
+      max: 2000,
       title: { text: "Nilai TDS" },
     },
     title: {
@@ -143,22 +143,22 @@ const Linechart_tds = () => {
 
   // --- STEP 6: Render chart ---
   return (
-    <div className="col-12 col-md-6 col-lg-6">
-      <div className="card" style={{ borderTop: "4px solid #E0D9D9" }}>
+    <div className="col-12">
+      <div className="card" style={{ borderTop: "4px solid #637AB9" }}>
         <div className="card-block">
-          <h3 className="card-title">Realtime TDS Chart</h3>
+          <h3 className="card-title">TDS Chart</h3>
           <h6 className="card-subtitle">
-            Data dari database (15 terbaru) dan update otomatis tiap menit.
+            Pergerakan nilai Ph dalam 15 menit terakhir.
           </h6>
 
-          <div className="mt-3">
+          <div className="mt-3 w-[150px] md:w-[450px]">
             {series[0].data.length > 0 ? (
               <Chart
                 options={options}
                 series={series}
                 type="line"
                 height={300}
-                width={450}
+                width="100%"
               />
             ) : (
               <p>Belum ada data tunggu 1 menit...</p>

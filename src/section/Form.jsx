@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ref, onValue, update } from 'firebase/database';
 import { db } from '../Firebase';
+import Swal from 'sweetalert2'
 
 function Form() {
     const [formData, setFormData] = useState({
@@ -40,7 +41,11 @@ function Form() {
                 Object.entries(formData).map(([key, val]) => [key, Number(val) || 0])
             );
             await update(ref(db, '/'), dataToSend);
-            alert('Data berhasil dikirim ke Firebase!');
+            Swal.fire({
+                title: "Data berhasil disimpan!",
+                icon: "success",
+                draggable: false
+            });
             setFormData({ autoPh: '', autoTds: '', autoSuhu: '' });
         } catch (error) {
             console.error('Gagal mengirim data:', error);
