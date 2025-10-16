@@ -15,7 +15,7 @@ function navbar() {
                     <ul className="navbar-nav ml-auto my-lg-0">
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle text-muted waves-effect waves-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Wellcome
+                                MAN 4 Jombang
                             </a>
                             {/* <a className="nav-link dropdown-toggle text-muted waves-effect waves-dark" href data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Wellcome

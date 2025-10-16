@@ -58,12 +58,12 @@ function Form() {
             <form className="form-material" onSubmit={handleSubmit}>
                 <div className="row mb-3">
                     <div className="col-md-4 mb-3">
-                        <label className="form-label">Sensor Ph</label>
+                        <label className="form-label" style={{ textAlign: 'left' }}>Sensor Ph</label>
                         <input
                             type="text"
                             name="autoPh"
                             placeholder="contoh: 23"
-                            className="form-control"
+                            className="form-control text-center"
                             value={formData.autoPh}
                             onChange={handleChange}
                         />
@@ -75,7 +75,7 @@ function Form() {
                             type="text"
                             name="autoTds"
                             placeholder="contoh: 50"
-                            className="form-control"
+                            className="form-control text-center"
                             value={formData.autoTds}
                             onChange={handleChange}
                         />
@@ -87,7 +87,7 @@ function Form() {
                             type="text"
                             name="autoSuhu"
                             placeholder="contoh: 70"
-                            className="form-control"
+                            className="form-control text-center"
                             value={formData.autoSuhu}
                             onChange={handleChange}
                         />

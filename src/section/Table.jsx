@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import api from "../Restapi";
+import Swal from "sweetalert2";
 
 function Table() {
     const [fulldata, setFulldata] = useState([]);
-    const [ , setLoading] = useState(true);
+    const [, setLoading] = useState(true);
 
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
@@ -76,29 +77,55 @@ function Table() {
         }
     };
 
+
+    const handleReset = async (e) => {
+        e.preventDefault();
+
+        const result = await Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        });
+
+        if (result.isConfirmed) {
+            try {
+                await api.post("/reset", { reset: true });
+                await Swal.fire({
+                    title: "Data Berhasil di Reset!",
+                    icon: "success"
+                });
+                window.location.reload();
+            } catch (error) {
+                console.error("Gagal reset data:", error);
+                Swal.fire({
+                    title: "Error",
+                    text: "Terjadi kesalahan saat reset data.",
+                    icon: "error"
+                });
+            }
+        }
+    };
+
+
     return (
         <div className="px-2 m-0">
             <div className="mb-3 d-flex align-items-center">
                 <div className="d-inline d-sm-block">
                     <span className="text-muted mr-3 mb-3">Klik tombol untuk mengunduh data Excel</span>
 
-                    <button onClick={handleDownload} className="btn btn-success me-2">
+                    <button onClick={handleDownload} className="btn btn-success mr-2">
                         <i className="bi bi-file-earmark-excel me-1"></i> Download Excel
+                    </button>
+
+                    <button onClick={handleReset} className="btn btn-danger me-2">
+                        <i className="bi bi-file-earmark-excel me-1"></i> Hapus Log
                     </button>
                 </div>
             </div>
-
-            {/* <DataTable
-                // title="Download Excell"
-                columns={columns}
-                data={fulldata}
-                progressPending={loading}
-                pagination
-                highlightOnHover
-                striped
-                dense
-                noDataComponent="Tidak ada data untuk ditampilkan"
-            /> */}
 
             <DataTable
                 columns={columns}

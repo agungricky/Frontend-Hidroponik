@@ -1,4 +1,5 @@
 import Title_halaman from "../section/halaman_name";
+import Card from "../komponen/Card";
 import NilaiSensor from "../komponen/NilaiSensor";
 import BigrealtimeChart from "../section/BigrealtimeChartt";
 import RiwayatLog from "../komponen/RiwayatLog";
@@ -12,6 +13,7 @@ function dashboard() {
         <div className="page-wrapper">
             <div className="container-fluid">
                 <Title_halaman />
+                <Card />
                 <NilaiSensor />
                 <div className="row">
                     <Linechart_ph/>

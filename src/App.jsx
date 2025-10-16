@@ -5,7 +5,7 @@ import Dashboard from "./pages/Dshbord"
 function App() {
   return (
     <>
-      <Preloading />
+      {/* <Preloading /> */}
 
       <div id="main-wrapper">
         <Navbar />

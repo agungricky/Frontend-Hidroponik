@@ -18,3 +18,104 @@
   }
 }
 
+
+
+/* CARD BASE STYLE */
+.card {
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  text-align: center; /* Semua isi rata tengah */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* BORDER START COLORS */
+.border-start-lg {
+  border-left-width: 6px !important;
+}
+
+.border-start-primary {
+  border-left-color: #4e73df !important;
+}
+
+.border-start-secondary {
+  border-left-color: #858796 !important;
+}
+
+.border-start-success {
+  border-left-color: #1cc88a !important;
+}
+
+/* TEXT AND TYPOGRAPHY */
+.card-body .small {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.card-body .h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #2e2f31;
+  margin-bottom: 0.75rem;
+}
+
+/* LINK ARROW STYLE */
+.text-arrow-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-weight: 500;
+  color: #4e73df;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.text-arrow-icon svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.text-arrow-icon:hover {
+  color: #224abe;
+}
+
+.text-arrow-icon:hover svg {
+  transform: translateX(4px);
+}
+
+/* COLOR VARIANTS */
+.text-arrow-icon.text-secondary {
+  color: #6c757d;
+}
+
+.text-arrow-icon.text-secondary:hover {
+  color: #5a6268;
+}
+
+.text-arrow-icon.text-success {
+  color: #1cc88a;
+}
+
+.text-arrow-icon.text-success:hover {
+  color: #17a673;
+}
+
+/* RESPONSIVE CARD SPACING */
+@media (max-width: 767px) {
+  .card {
+    margin-bottom: 1rem;
+  }
+}

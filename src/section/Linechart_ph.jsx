@@ -152,7 +152,7 @@ const Linechart_ph = () => {
   // --- STEP 6: Render chart ---
   return (
     <div className="col-12 col-md-6 col-lg-6">
-      <div className="card" style={{ borderTop: "4px solid #B6CEB4" }}>
+      <div className="card" style={{ borderTop: "4px solid #A7E399" }}>
         <div className="card-block">
           <h3 className="card-title">PH Chart</h3>
           <h6 className="card-subtitle">

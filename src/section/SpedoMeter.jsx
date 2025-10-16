@@ -7,48 +7,12 @@ function SpedoMeter(props) {
                 <h4 className="text-center">
                     {props.title}
                 </h4>
-                {/* <GaugeComponent
-                    minValue={0}
-                    maxValue={15}
-                    arc={{
-                        subArcs: [
-                            {
-                                limit: props.limit[0],
-                                color: '#EA4228',
-                                showTick: true
-                            },
-                            {
-                                limit: props.limit[1],
-                                color: '#F58B19',
-                                showTick: true
-                            },
-                            {
-                                limit: props.limit[2],
-                                color: '#F5CD19',
-                                showTick: true
-                            },
-                            {
-                                limit: props.limit[3],
-                                color: '#5BE12C',
-                                showTick: true
-                            },
-                        ]
-                    }}
-                    value={props.value}
-                    labels={{
-                        valueLabel: {
-                            formatTextValue: value => value + ' ' + props.satuan,
-                            style: { fill: '#393E46', fontSize: '30px', fontFamily: 'Arial' }
-                        }
-                    }}
-                /> */}
-
                 <GaugeComponent
                     minValue={props.min}
                     maxValue={props.max}
                     arc={{
                         subArcs: props.limit
-                            .filter(limit => limit >= props.min && limit <= props.max) 
+                            .filter(limit => limit >= props.min && limit <= props.max)
                             .map((limit, index) => ({
                                 limit,
                                 color: ['#EA4228', '#F58B19', '#F5CD19', '#5BE12C', '#EA4228'][index],
@@ -64,6 +28,16 @@ function SpedoMeter(props) {
                     }}
                 />
 
+                <table className='m-auto'>
+                    <tbody>
+                        <tr>
+                            <td>{props.keterangan[0]}</td>
+                        </tr>
+                        <tr>
+                            <td>{props.keterangan[1]}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     )
