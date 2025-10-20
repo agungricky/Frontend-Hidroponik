@@ -114,16 +114,19 @@ function Table() {
     return (
         <div className="px-2 m-0">
             <div className="mb-3 d-flex align-items-center">
-                <div className="d-inline d-sm-block">
+                <div className="d-flex flex-sm-row flex-column">
                     <span className="text-muted mr-3 mb-3">Klik tombol untuk mengunduh data Excel</span>
 
-                    <button onClick={handleDownload} className="btn btn-success mr-2">
-                        <i className="bi bi-file-earmark-excel me-1"></i> Download Excel
-                    </button>
+                    <div>
+                        <button onClick={handleDownload} className="btn btn-success mr-2">
+                            <i className="bi bi-file-earmark-excel me-1"></i> Download Excel
+                        </button>
 
-                    <button onClick={handleReset} className="btn btn-danger me-2">
-                        <i className="bi bi-file-earmark-excel me-1"></i> Hapus Log
-                    </button>
+                        <button onClick={handleReset} className="btn btn-danger me-2">
+                            <i className="bi bi-file-earmark-excel me-1"></i> Hapus Log
+                        </button>
+                    </div>
+
                 </div>
             </div>
 

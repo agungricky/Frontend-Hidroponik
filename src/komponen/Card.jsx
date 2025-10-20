@@ -12,52 +12,34 @@ function Card() {
         const [statusWadah, setstatusWadah] = useState(null);
     
         useEffect(() => {
-            const phRef = ref(db, "tinggiAir");
-            const tdsRef = ref(db, "tinggiNutrisi");
-            const suhuRef = ref(db, "tinggiWadah");
+            const tandonAirRef = ref(db, "tinggiAir");
+            const tandonNutrisiRef = ref(db, "tinggiNutrisi");
+            const tiggiWadahRef = ref(db, "tinggiWadah");
     
-            const unsubscribeAir = onValue(phRef, (snapshot) => {
+            const unsubscribeAir = onValue(tandonAirRef, (snapshot) => {
                 settinggiAir(snapshot.val());
-                if (snapshot.val() >= 22) {
-                    setstatusAir("Penuh");
-                } 
-
-                if ((snapshot.val() < 22 ) && (snapshot.val() >= 3)) {
+                if (snapshot.val() == 0) {
                     setstatusAir("Cukup");
-                }
-
-                if (snapshot.val() < 3) {
-                    setstatusAir("Habis");
+                } else if (snapshot.val() == 1) {
+                    setstatusAir("Penuh");
                 }
             });
     
-            const unsubscribeNutrisi = onValue(tdsRef, (snapshot) => {
+            const unsubscribeNutrisi = onValue(tandonNutrisiRef, (snapshot) => {
                 settinggiNutrisi(snapshot.val());
-                if (snapshot.val() >= 15) {
-                    setstatusNutrisi("Penuh");
-                } 
-
-                if ((snapshot.val() < 15 ) && (snapshot.val() >= 3)) {
+                if (snapshot.val() == 0) {
                     setstatusNutrisi("Cukup");
-                }
-
-                if (snapshot.val() < 3) {
-                    setstatusNutrisi("Habis");
+                } else if (snapshot.val() == 1) {
+                    setstatusNutrisi("Penuh");
                 }
             });
     
-            const unsubscribeWadah = onValue(suhuRef, (snapshot) => {
+            const unsubscribeWadah = onValue(tiggiWadahRef, (snapshot) => {
                 settinggiWadah(snapshot.val());
-                if (snapshot.val() >= 8) {
-                    setstatusWadah("Penuh");
-                } 
-
-                if ((snapshot.val() < 8 ) && (snapshot.val() >= 1)) {
+                if (snapshot.val() == 0) {
                     setstatusWadah("Cukup");
-                }
-
-                if (snapshot.val() < 1) {
-                    setstatusWadah("Habis");
+                } else if (snapshot.val() == 1) {
+                    setstatusWadah("Penuh");
                 }
             });
     

@@ -119,3 +119,19 @@
     margin-bottom: 1rem;
   }
 }
+
+
+.floating-alert {
+  position: absolute;
+  top: 20px;
+  right: -300px; 
+  min-width: 250px;
+  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0;
+  z-index: 999;
+}
+
+.floating-alert.show {
+  right: 10px; /* geser masuk */
+  opacity: 1;
+}

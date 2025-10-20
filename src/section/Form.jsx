@@ -62,7 +62,7 @@ function Form() {
                         <input
                             type="text"
                             name="autoPh"
-                            placeholder="contoh: 23"
+                            placeholder="contoh: 7"
                             className="form-control text-center"
                             value={formData.autoPh}
                             onChange={handleChange}
@@ -74,7 +74,7 @@ function Form() {
                         <input
                             type="text"
                             name="autoTds"
-                            placeholder="contoh: 50"
+                            placeholder="contoh: 1300"
                             className="form-control text-center"
                             value={formData.autoTds}
                             onChange={handleChange}
@@ -86,7 +86,7 @@ function Form() {
                         <input
                             type="text"
                             name="autoSuhu"
-                            placeholder="contoh: 70"
+                            placeholder="contoh: 25"
                             className="form-control text-center"
                             value={formData.autoSuhu}
                             onChange={handleChange}

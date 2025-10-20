@@ -61,8 +61,8 @@ function NilaiSensor() {
     useEffect(() => {
         if (ph === null || autoPh === null) return;
 
-        const max = autoPh + 0.5;
-        const min = autoPh - 0.5;
+        const max = autoPh + 1;
+        const min = autoPh - 1;
 
         if (ph < min) {
             setKeteranganPh(["Asam", "Pompa Air Menyala"]);
@@ -86,7 +86,7 @@ function NilaiSensor() {
     useEffect(() => {
         if (suhu === null || autoSuhu === null) return;
 
-        const max = autoSuhu + 0.5;
+        const max = autoSuhu + 1;
 
         if (suhu < autoSuhu) {
             setKeteranganSuhu(["Dingin", null]);
@@ -110,9 +110,9 @@ function NilaiSensor() {
                         </div>
 
                         <div className="d-flex flex-column flex-md-row">
-                            <SpedoMeter title={"Sensor Ph"} value={ph} satuan={"Ph"} border={true} limit={[0, 4, 9, 14]} min={0} max={14} keterangan={keteranganPh} />
-                            <SpedoMeter title={"Sensor TDS"} value={tds} satuan={"Ppm"} border={true} limit={[0, 500, 1000, 1500, 2000]} min={0} max={2000} keterangan={keteranganTds} />
-                            <SpedoMeter title={"Sensor Suhu"} value={suhu} satuan={"°C"} border={false} limit={[0, 40, 80, 100]} min={0} max={100} keterangan={keteranganSuhu} />
+                            <SpedoMeter title={"Sensor Ph"} value={ph} satuan={"Ph"} border={true} limit={[0, 4, 10, 14]} min={0} max={14} keterangan={keteranganPh} warna={["#FF0000", "#EA4228", "#5BE12C", "#4E61D3"]} />
+                            <SpedoMeter title={"Sensor TDS"} value={tds} satuan={"Ppm"} border={true} limit={[0, 500, 1000, 1500, 2000]} min={0} max={2000} keterangan={keteranganTds} warna={['#EA4228', '#5BE12C', '#4CD4FF', '#F58B19', '#EA4228']} />
+                            <SpedoMeter title={"Sensor Suhu"} value={suhu} satuan={"°C"} border={false} limit={[0, 25, 60, 100]} min={0} max={100} keterangan={keteranganSuhu} warna={['#EA4228', '#00BFFF', '#F58B19', '#EA4228']} />
                         </div>
                     </div>
                 </div>

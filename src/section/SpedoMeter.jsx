@@ -15,7 +15,7 @@ function SpedoMeter(props) {
                             .filter(limit => limit >= props.min && limit <= props.max)
                             .map((limit, index) => ({
                                 limit,
-                                color: ['#EA4228', '#F58B19', '#F5CD19', '#5BE12C', '#EA4228'][index],
+                                color: props.warna[index],
                                 showTick: true,
                             })),
                     }}

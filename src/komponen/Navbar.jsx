@@ -1,6 +1,6 @@
 function navbar() {
     return (
-        <header className="topbar">
+        <header className="topbar" style={{zIndex: 1000}}>
             <nav className="navbar top-navbar navbar-toggleable-sm navbar-light">
                 <div className="navbar-header">
                     <a className="navbar-brand" href="">

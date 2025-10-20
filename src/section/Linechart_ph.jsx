@@ -142,6 +142,9 @@ const Linechart_ph = () => {
       min: 0,
       max: 14,
       title: { text: "Nilai PH" },
+      labels: {
+        formatter: (val) => val.toFixed(0),
+      },
     },
     title: {
       text: "Realtime PH Chart",

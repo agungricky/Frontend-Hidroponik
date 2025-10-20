@@ -134,6 +134,9 @@ const Linechart_tds = () => {
       min: 0,
       max: 2000,
       title: { text: "Nilai TDS" },
+      labels: {
+        formatter: (val) => val.toFixed(0),
+      },
     },
     title: {
       text: "Realtime TDS Chart",

@@ -134,6 +134,9 @@ const Bigrealtimechart = () => {
       min: 0,
       max: 100,
       title: { text: "Nilai Suhu" },
+      labels: {
+        formatter: (val) => val.toFixed(0),
+      },
     },
     title: {
       text: "Realtime Suhu Chart",
