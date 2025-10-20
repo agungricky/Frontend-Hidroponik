@@ -10,11 +10,10 @@ function Table() {
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage, setPerPage] = useState(10);
 
-    // ambil data dari backend
     const fetchData = async () => {
         try {
             const response = await api.get("/alldata");
-            setFulldata(response.data); // langsung ambil array karena backend return json array
+            setFulldata(response.data); 
         } catch (err) {
             console.error("Gagal mengambil data:", err);
         } finally {
@@ -23,14 +22,12 @@ function Table() {
     };
 
     useEffect(() => {
-        fetchData(); // ambil data pertama kali
+        fetchData(); 
 
-        // auto-refresh setiap 60 detik
         const interval = setInterval(() => {
             fetchData();
         }, 60000);
 
-        // bersihkan interval saat komponen unmount
         return () => clearInterval(interval);
     }, []);
 
@@ -61,10 +58,9 @@ function Table() {
     const handleDownload = async () => {
         try {
             const response = await api.get("/downloadExcell", {
-                responseType: "blob", // penting biar hasil download bukan teks acak
+                responseType: "blob", 
             });
 
-            // Buat link sementara untuk download
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement("a");
             link.href = url;

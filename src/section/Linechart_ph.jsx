@@ -4,20 +4,20 @@ import { db } from "../Firebase";
 import { onValue, ref } from "firebase/database";
 import api from "../Restapi";
 
-const INTERVAL = 60000; // kirim data ke backend tiap 60 detik
+const INTERVAL = 60000;
 
 const Linechart_ph = () => {
   const [series, setSeries] = useState([
     {
       name: "PH",
-      data: [], // nanti diisi dari database
+      data: [], 
     },
   ]);
 
   const phRef = useRef(null);
   const tdsRef = useRef(null);
   const suhuRef = useRef(null);
-  const recordRef = useRef([]); // menyimpan semua data yang tampil di chart
+  const recordRef = useRef([]); 
 
   const [ph, setPh] = useState(null);
   const [tds, setTds] = useState(null);
@@ -41,7 +41,6 @@ const Linechart_ph = () => {
           y: parseFloat(item.ph),
         }));
 
-        // simpan ke ref dan chart
         recordRef.current = formattedData;
         setSeries([{ name: "PH", data: formattedData }]);
       })
@@ -87,15 +86,13 @@ const Linechart_ph = () => {
           }),
         };
 
-        // kirim ke backend
         api
           .post("/sensor", dataToSend)
           .then(() => {
-            // tambahkan data baru ke recordRef
             const newData = [
               ...recordRef.current,
               { x: new Date(), y: parseFloat(dataToSend.ph) },
-            ].slice(-15); // jaga tetap 15 data terakhir
+            ].slice(-15); 
 
             recordRef.current = newData;
             setSeries([{ name: "PH", data: newData }]);
