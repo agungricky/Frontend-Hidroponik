@@ -13,12 +13,12 @@ function HalamanName() {
 
         const unsubscribeAir = onValue(tandonAirRef, (snapshot) => {
             const tinggiAir = snapshot.val();
-            tinggiAir === 0 ? setStatusTandonAir(true) : setStatusTandonAir(false);
+            tinggiAir < 3 ? setStatusTandonAir(true) : setStatusTandonAir(false);
         });
 
         const unsubscribeNutrisi = onValue(tandonNutrisiRef, (snapshot) => {
             const tinggiNutrisi = snapshot.val();
-            tinggiNutrisi === 0 ? setStatusTandonNutrisi(true) : setStatusTandonNutrisi(false);
+            tinggiNutrisi < 3 ? setStatusTandonNutrisi(true) : setStatusTandonNutrisi(false);
         });
 
         return () => {
